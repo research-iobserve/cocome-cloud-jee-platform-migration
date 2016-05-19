@@ -37,6 +37,17 @@
 			<version>1.2-20</version>
 		</dependency>
 
+		<!-- add on for monitoring -->
+		<dependency>
+			<groupId>org.iobserve</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.iobserve</groupId>
+			<artifactId>monitoring</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -103,48 +114,48 @@
 					</execution>
 				</executions>
 			</plugin>
-<!-- 			<plugin> -->
-<!-- 				<groupId>org.glassfish.maven.plugin</groupId> -->
-<!-- 				<artifactId>maven-glassfish-plugin</artifactId> -->
+			<!-- <plugin> -->
+			<!-- <groupId>org.glassfish.maven.plugin</groupId> -->
+			<!-- <artifactId>maven-glassfish-plugin</artifactId> -->
 
-<!-- 				<configuration> -->
-<!-- 					<glassfishDirectory>${local.glassfish.home}</glassfishDirectory> -->
-<!-- 					<user>${web.user}</user> -->
-<!-- 					<adminPassword>${web.password}</adminPassword> -->
-<!-- 					<passwordFile>${web.passwordFile}</passwordFile> -->
-<!-- 					<domain> -->
-<!-- 						<name>${web.domain}</name> -->
-<!-- 						<host>${web.host}</host> -->
-<!-- 						<httpPort>${web.httpPort}</httpPort> -->
-<!-- 						<adminPort>${web.adminPort}</adminPort> -->
-<!-- 					</domain> -->
-<!-- 					<components> -->
-<!-- 						<component> -->
-<!-- 							<name>${project.artifactId}</name> -->
-<!-- 							<artifact>target/${project.artifactId}-${project.version}.${project.packaging}</artifact> -->
-<!-- 						</component> -->
-<!-- 					</components> -->
-<!-- 					<debug>true</debug> -->
-<!-- 					<echo>true</echo> -->
-<!-- 				</configuration> -->
+			<!-- <configuration> -->
+			<!-- <glassfishDirectory>${local.glassfish.home}</glassfishDirectory> -->
+			<!-- <user>${web.user}</user> -->
+			<!-- <adminPassword>${web.password}</adminPassword> -->
+			<!-- <passwordFile>${web.passwordFile}</passwordFile> -->
+			<!-- <domain> -->
+			<!-- <name>${web.domain}</name> -->
+			<!-- <host>${web.host}</host> -->
+			<!-- <httpPort>${web.httpPort}</httpPort> -->
+			<!-- <adminPort>${web.adminPort}</adminPort> -->
+			<!-- </domain> -->
+			<!-- <components> -->
+			<!-- <component> -->
+			<!-- <name>${project.artifactId}</name> -->
+			<!-- <artifact>target/${project.artifactId}-${project.version}.${project.packaging}</artifact> -->
+			<!-- </component> -->
+			<!-- </components> -->
+			<!-- <debug>true</debug> -->
+			<!-- <echo>true</echo> -->
+			<!-- </configuration> -->
 
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<id>gf-undeploy</id> -->
-<!-- 						<goals> -->
-<!-- 							<goal>undeploy</goal> -->
-<!-- 						</goals> -->
-<!-- 						<phase>post-clean</phase> -->
-<!-- 					</execution> -->
-<!-- 					<execution> -->
-<!-- 						<id>gf-deploy</id> -->
-<!-- 						<goals> -->
-<!-- 							<goal>deploy</goal> -->
-<!-- 						</goals> -->
-<!-- 						<phase>install</phase> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 			</plugin> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <id>gf-undeploy</id> -->
+			<!-- <goals> -->
+			<!-- <goal>undeploy</goal> -->
+			<!-- </goals> -->
+			<!-- <phase>post-clean</phase> -->
+			<!-- </execution> -->
+			<!-- <execution> -->
+			<!-- <id>gf-deploy</id> -->
+			<!-- <goals> -->
+			<!-- <goal>deploy</goal> -->
+			<!-- </goals> -->
+			<!-- <phase>install</phase> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
