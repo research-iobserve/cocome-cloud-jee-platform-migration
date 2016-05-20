@@ -2,7 +2,7 @@
 
 GLASSFISH="/home/rju/glassfish4/glassfish"
 
-BASE="/home/rju/Projects/CoCoME"
+BASE="/home/rju/Projects/iObserve"
 SUPPL="cocome-cloud-jee-platform-migration/cocome-maven-project
 cocome-cloud-jee-service-adapter"
 PASSWORD_FILE="/home/rju/Projects/iObserve/passwordfile"

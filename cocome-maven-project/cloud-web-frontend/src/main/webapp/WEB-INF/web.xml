@@ -21,17 +21,18 @@
 		<mime-type>text/html</mime-type>
 	</mime-mapping>
 
+	<!-- Kieker setup -->
 	<context-param>
 		<param-name>deploymentId</param-name>
-		<param-value>UNIQUE-IDENTIFIER</param-value>
+		<param-value>web-frontend-01</param-value>
 	</context-param>
 
 	<filter>
-		<filter-name>sessionAndTraceRegistrationFilter</filter-name>
+		<filter-name>SessionAndTraceRegistrationFilter</filter-name>
 		<filter-class>org.iobserve.monitoring.probe.servlet.SessionAndTraceRegistrationFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>sessionAndTraceRegistrationFilter</filter-name>
+		<filter-name>SessionAndTraceRegistrationFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<listener>
