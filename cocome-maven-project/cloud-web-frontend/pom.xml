@@ -1,15 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>cloud-web-frontend</artifactId>
-	<packaging>war</packaging>
-	<name>Cloud Web Frontend</name>
 
 	<parent>
 		<groupId>org.cocome</groupId>
 		<artifactId>cocome-maven-project</artifactId>
 		<version>1.1</version>
 	</parent>
+
+	<artifactId>cloud-web-frontend</artifactId>
+	<packaging>war</packaging>
+	<name>Cloud Web Frontend</name>
 
 	<dependencies>
 		<dependency>
@@ -48,10 +49,50 @@
 			<artifactId>monitoring</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
+		<!-- aspectj -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.8.7</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>1.8</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+					<complianceLevel>${java-version}</complianceLevel>
+					<aspectLibraries>
+						<aspectLibrary>
+							<groupId>net.kieker-monitoring</groupId>
+							<artifactId>kieker</artifactId>
+						</aspectLibrary>
+					</aspectLibraries>
+					<xmlConfigured>${basedir}/src/main/webapp/META-INF/aop.xml</xmlConfigured>
+					<sources>
+						<source>
+							<basedir>${basedir}/src/main/java</basedir>
+							<includes>
+								<include>**/**.java</include>
+							</includes>
+						</source>
+					</sources>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>       <!-- use this goal to weave all your main classes -->
+							<goal>test-compile</goal>  <!-- use this goal to weave all your test classes -->
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -114,48 +155,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- <plugin> -->
-			<!-- <groupId>org.glassfish.maven.plugin</groupId> -->
-			<!-- <artifactId>maven-glassfish-plugin</artifactId> -->
-
-			<!-- <configuration> -->
-			<!-- <glassfishDirectory>${local.glassfish.home}</glassfishDirectory> -->
-			<!-- <user>${web.user}</user> -->
-			<!-- <adminPassword>${web.password}</adminPassword> -->
-			<!-- <passwordFile>${web.passwordFile}</passwordFile> -->
-			<!-- <domain> -->
-			<!-- <name>${web.domain}</name> -->
-			<!-- <host>${web.host}</host> -->
-			<!-- <httpPort>${web.httpPort}</httpPort> -->
-			<!-- <adminPort>${web.adminPort}</adminPort> -->
-			<!-- </domain> -->
-			<!-- <components> -->
-			<!-- <component> -->
-			<!-- <name>${project.artifactId}</name> -->
-			<!-- <artifact>target/${project.artifactId}-${project.version}.${project.packaging}</artifact> -->
-			<!-- </component> -->
-			<!-- </components> -->
-			<!-- <debug>true</debug> -->
-			<!-- <echo>true</echo> -->
-			<!-- </configuration> -->
-
-			<!-- <executions> -->
-			<!-- <execution> -->
-			<!-- <id>gf-undeploy</id> -->
-			<!-- <goals> -->
-			<!-- <goal>undeploy</goal> -->
-			<!-- </goals> -->
-			<!-- <phase>post-clean</phase> -->
-			<!-- </execution> -->
-			<!-- <execution> -->
-			<!-- <id>gf-deploy</id> -->
-			<!-- <goals> -->
-			<!-- <goal>deploy</goal> -->
-			<!-- </goals> -->
-			<!-- <phase>install</phase> -->
-			<!-- </execution> -->
-			<!-- </executions> -->
-			<!-- </plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>

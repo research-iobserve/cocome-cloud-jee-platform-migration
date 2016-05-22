@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>cloud-logic-service</artifactId>
 		<groupId>org.cocome</groupId>
+		<artifactId>cloud-logic-service</artifactId>
 		<version>1.1</version>
 	</parent>
 
@@ -18,41 +18,88 @@
 	</properties>
 
 	<dependencies>
-
-
 		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-1.2-api</artifactId>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.jboss.spec</groupId>
 			<artifactId>jboss-javaee-web-6.0</artifactId>
 			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-1.2-api</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.cocome</groupId>
 			<artifactId>cloud-logic-core-services</artifactId>
 			<version>1.1</version>
 		</dependency>
 
+		<!-- add on for monitoring -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
+			<groupId>org.iobserve</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.iobserve</groupId>
+			<artifactId>monitoring</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
+		<!-- aspectj -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.8.7</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>1.8</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+					<complianceLevel>${java-version}</complianceLevel>
+					<aspectLibraries>
+						<aspectLibrary>
+							<groupId>net.kieker-monitoring</groupId>
+							<artifactId>kieker</artifactId>
+						</aspectLibrary>
+					</aspectLibraries>
+					<xmlConfigured>${basedir}/src/main/resources/aop.xml</xmlConfigured>
+					<sources>
+						<source>
+							<basedir>${basedir}/src/main/java</basedir>
+							<includes>
+								<include>**/**.java</include>
+							</includes>
+						</source>
+					</sources>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>       <!-- use this goal to weave all your main classes -->
+							<goal>test-compile</goal>  <!-- use this goal to weave all your test classes -->
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -62,6 +109,7 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
