@@ -9,7 +9,7 @@
 			<env-entry>
 				<env-entry-name>deploymentId</env-entry-name>
 				<env-entry-type>java.lang.String</env-entry-type>
-				<env-entry-value>database-access-instance-01</env-entry-value>
+				<env-entry-value>store-logic-ejb-01</env-entry-value>
 			</env-entry>
 			<post-construct>
 				<lifecycle-callback-class></lifecycle-callback-class>
@@ -22,14 +22,14 @@
 			</pre-destroy>
 		</interceptor>
 		<interceptor>
-			<interceptor-class>org.iobserve.monitoring.probe.j2ee.TraceInterceptor</interceptor-class>
+			<interceptor-class>org.iobserve.monitoring.probe.j2ee.TraceObjectInterceptor</interceptor-class>
 		</interceptor>
 	</interceptors>
 
 	<assembly-descriptor>
 		<interceptor-binding>
 			<ejb-name>*</ejb-name>
-			<interceptor-class>org.iobserve.monitoring.probe.j2ee.TraceInterceptor</interceptor-class>
+			<interceptor-class>org.iobserve.monitoring.probe.j2ee.TraceObjectInterceptor</interceptor-class>
 			<interceptor-class>org.iobserve.monitoring.probe.j2ee.DeploymentInterceptor</interceptor-class>
 		</interceptor-binding>
 	</assembly-descriptor>

@@ -74,7 +74,7 @@
 							<artifactId>kieker</artifactId>
 						</aspectLibrary>
 					</aspectLibraries>
-					<xmlConfigured>${basedir}/src/main/webapp/META-INF/aop.xml</xmlConfigured>
+					<xmlConfigured>${basedir}/src/main/resources/aop.xml</xmlConfigured>
 					<sources>
 						<source>
 							<basedir>${basedir}/src/main/java</basedir>
@@ -87,8 +87,7 @@
 				<executions>
 					<execution>
 						<goals>
-							<goal>compile</goal>       <!-- use this goal to weave all your main classes -->
-							<goal>test-compile</goal>  <!-- use this goal to weave all your test classes -->
+							<goal>compile</goal>
 						</goals>
 					</execution>
 				</executions>

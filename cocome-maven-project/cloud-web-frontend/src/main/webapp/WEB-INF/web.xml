@@ -29,7 +29,7 @@
 
 	<filter>
 		<filter-name>SessionAndTraceRegistrationFilter</filter-name>
-		<filter-class>org.iobserve.monitoring.probe.servlet.SessionAndTraceRegistrationFilter</filter-class>
+		<filter-class>org.iobserve.monitoring.probe.servlet.SessionAndTraceRegistrationObjectFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>SessionAndTraceRegistrationFilter</filter-name>

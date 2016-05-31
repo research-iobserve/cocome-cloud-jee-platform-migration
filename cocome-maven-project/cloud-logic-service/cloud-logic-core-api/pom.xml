@@ -35,6 +35,25 @@
 			<artifactId>java.utils</artifactId>
 			<version>1.1</version>
 		</dependency>
+		
+		<!-- add on for monitoring -->
+		<dependency>
+			<groupId>org.iobserve</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.iobserve</groupId>
+			<artifactId>monitoring</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- aspectj -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.8.7</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -49,77 +68,108 @@
 		</resources>
 	
 		<plugins>
-			<!-- Compiler plugin enforces Java 1.7 compatibility and activates annotation 
-				processors -->
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>1.8</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+					<complianceLevel>${java-version}</complianceLevel>
+					<aspectLibraries>
+						<aspectLibrary>
+							<groupId>net.kieker-monitoring</groupId>
+							<artifactId>kieker</artifactId>
+						</aspectLibrary>
+					</aspectLibraries>
+					<xmlConfigured>${basedir}/src/main/resources/aop.xml</xmlConfigured>
+					<sources>
+						<source>
+							<basedir>${basedir}/src/main/java</basedir>
+							<includes>
+								<include>**/**.java</include>
+							</includes>
+						</source>
+					</sources>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
 				</configuration>
 			</plugin>
 
-<!-- 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jaxb2-maven-plugin</artifactId>
-				<version>2.2</version>
-				<executions>
-					<execution>
-						<id>schemagen</id>
-						<goals>
-							<goal>schemagen</goal>
-						</goals>
-						<phase>generate-sources</phase>
-					</execution>
-					<execution>
-						<id>xjc</id>
-						<goals>
-							<goal>xjc</goal>
-						</goals>
-						<phase>process-classes</phase>
-						<configuration>
-							<generateEpisode>true</generateEpisode>
-							<sources>
-								<source>${project.build.directory}/generated-resources/schemagen</source>
-							</sources>
-							<xjcSourceExcludeFilters>
-								<filter
-							implementation="org.codehaus.mojo.jaxb2.shared.filters.pattern.PatternFileFilter">
-							<patterns>
-								<pattern>.*\.episode</pattern>
-							</patterns>
-						</filter>
-							</xjcSourceExcludeFilters>
-							<outputDirectory></outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-				<configuration>
-					<sources>
-						<source>src/main/java/org/cocome/tradingsystem/inventory</source>
-						<source>src/main/java/org/cocome/cloud/registry/service</source>
-					</sources>
-					Creating annotations yields an exception with jdk 1.8
-					<createJavaDocAnnotations>false</createJavaDocAnnotations>
-					Same problem as with annotations 
-					<transformSchemas>
-						<transformSchema>
-							<uri>http://core.logic.cloud.cocome.org/</uri>
-							<toFile>logic_core_schema.xsd</toFile>
-							<toPrefix>logicCore</toPrefix>
-						</transformSchema>
-					</transformSchemas>
-					<schemaSourceExcludeFilters>
-						<filter
-							implementation="org.codehaus.mojo.jaxb2.shared.filters.pattern.PatternFileFilter">
-							<patterns>
-								<pattern>.*Exception\.java</pattern>
-								<pattern>.*Names\.java</pattern>
-							</patterns>
-						</filter>
-					</schemaSourceExcludeFilters>
-				</configuration>
-			</plugin> -->
+	<!-- <plugin> -->
+	<!-- <groupId>org.codehaus.mojo</groupId> -->
+	<!-- <artifactId>jaxb2-maven-plugin</artifactId> -->
+	<!-- <version>2.2</version> -->
+	<!-- <executions> -->
+	<!-- <execution> -->
+	<!-- <id>schemagen</id> -->
+	<!-- <goals> -->
+	<!-- <goal>schemagen</goal> -->
+	<!-- </goals> -->
+	<!-- <phase>generate-sources</phase> -->
+	<!-- </execution> -->
+	<!-- <execution> -->
+	<!-- <id>xjc</id> -->
+	<!-- <goals> -->
+	<!-- <goal>xjc</goal> -->
+	<!-- </goals> -->
+	<!-- <phase>process-classes</phase> -->
+	<!-- <configuration> -->
+	<!-- <generateEpisode>true</generateEpisode> -->
+	<!-- <sources> -->
+	<!-- <source>${project.build.directory}/generated-resources/schemagen</source> -->
+	<!-- </sources> -->
+	<!-- <xjcSourceExcludeFilters> -->
+	<!-- <filter -->
+	<!-- implementation="org.codehaus.mojo.jaxb2.shared.filters.pattern.PatternFileFilter"> -->
+	<!-- <patterns> -->
+	<!-- <pattern>.*\.episode</pattern> -->
+	<!-- </patterns> -->
+	<!-- </filter> -->
+	<!-- </xjcSourceExcludeFilters> -->
+	<!-- <outputDirectory></outputDirectory> -->
+	<!-- </configuration> -->
+	<!-- </execution> -->
+	<!-- </executions> -->
+	<!-- <configuration> -->
+	<!-- <sources> -->
+	<!-- <source>src/main/java/org/cocome/tradingsystem/inventory</source> -->
+	<!-- <source>src/main/java/org/cocome/cloud/registry/service</source> -->
+	<!-- </sources> -->
+	<!-- Creating annotations yields an exception with jdk 1.8 -->
+	<!-- <createJavaDocAnnotations>false</createJavaDocAnnotations> -->
+	<!-- Same problem as with annotations -->
+	<!-- <transformSchemas> -->
+	<!-- <transformSchema> -->
+	<!-- <uri>http://core.logic.cloud.cocome.org/</uri> -->
+	<!-- <toFile>logic_core_schema.xsd</toFile> -->
+	<!-- <toPrefix>logicCore</toPrefix> -->
+	<!-- </transformSchema> -->
+	<!-- </transformSchemas> -->
+	<!-- <schemaSourceExcludeFilters> -->
+	<!-- <filter -->
+	<!-- implementation="org.codehaus.mojo.jaxb2.shared.filters.pattern.PatternFileFilter"> -->
+	<!-- <patterns> -->
+	<!-- <pattern>.*Exception\.java</pattern> -->
+	<!-- <pattern>.*Names\.java</pattern> -->
+	<!-- </patterns> -->
+	<!-- </filter> -->
+	<!-- </schemaSourceExcludeFilters> -->
+	<!-- </configuration> -->
+	<!-- </plugin> -->
 		</plugins>
 	</build>
 

@@ -9,15 +9,18 @@
 	</weaver>
 
 	<aspects>
+		<!-- Use the aspect directives to specify the aspect(s) to use (typically 
+			only one). -->
+
 		<!-- object -->
+<!--		<aspect
+			name="kieker.monitoring.probe.aspectj.flow.constructorCallObject.FullInstrumentation" /> -->
 		<aspect
-			name="kieker.monitoring.probe.aspectj.flow.constructorCallObject.FullInstrumentation" />
-<!-- 		<aspect -->
-<!-- 			name="kieker.monitoring.probe.aspectj.flow.constructorExecutionObject.FullInstrumentation" /> -->
+			name="kieker.monitoring.probe.aspectj.flow.constructorExecutionObject.FullInstrumentation" />
 		<aspect
 			name="kieker.monitoring.probe.aspectj.flow.constructorExecutionObjectInterface.FullInstrumentation" />
-<!-- 		<aspect -->
-<!-- 			name="kieker.monitoring.probe.aspectj.flow.operationCallObject.FullInstrumentationNoGetterAndSetter" /> -->
+<!--		<aspect
+			name="kieker.monitoring.probe.aspectj.flow.operationCallObject.FullInstrumentationNoGetterAndSetter" /> -->
 		<aspect
 			name="kieker.monitoring.probe.aspectj.flow.operationExecutionObjectInterface.FullInstrumentationNoGetterAndSetter" />
 		<aspect
@@ -36,4 +39,3 @@
 <!-- 			name="kieker.monitoring.probe.aspectj.flow.operationExecution.FullInstrumentationNoGetterAndSetter" /> -->
 	</aspects>
 </aspectj>
-
