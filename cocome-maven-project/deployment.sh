@@ -22,17 +22,17 @@ fi
 
 function undeploy() {
 	if isDeployed $1 $2 ; then
-		echo "Undeploy $2 from $1"
+		echo "Undeploy from $1: $2"
 		$GLASSFISH/bin/asadmin --host "$1" -p 4848 --user admin \
 			-W ${PASSWORD_FILE} undeploy "$2-$REVISION"
 	else
-		echo "Already undeployed $2 from $1"
+		echo "Already undeployed from $1: $2"
 	fi
 }
 
 function deploy() {
 	if isDeployed $1 $2 ; then
-		echo "Already deployed $2 on $1, ignoring request"
+		echo "Already deployed on $1: $2"
  	else 
 		DIRS=""
 		for DIR in $SUPPL ; do
@@ -59,16 +59,18 @@ function isDeployed() {
 }
 
 function status() {
-	echo -n "Status of $2 "
+	echo -n "Status of $1: "
 	if isDeployed $1 $2 ; then
-		echo "present on $1"
+		echo "deployed     $2"
 	else
-		echo "not deployed on $1"
+		echo "NOt deployed $2"
 	fi
 }
 
 
 IFS=$'\n'
+
+# 192.168.48.224 service-adapter-ear
 
 for I in `cat << EOF
 192.168.48.206 cloud-web-frontend
@@ -95,3 +97,4 @@ EOF` ; do
 done
 
 # end
+

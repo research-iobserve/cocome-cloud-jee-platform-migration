@@ -4,6 +4,8 @@ export HOSTS="192.168.48.206 192.168.48.232 192.168.48.236 192.168.48.224"
 
 BINDIR=$(cd "$(dirname "$0")"; pwd)/
 
+DATADIR="/data/cocome"
+
 function remoteGlassfish () {
 	ssh glassfish@$1 /opt/glassfish-4.0/glassfish/bin/asadmin $2 $3
 }
@@ -49,9 +51,10 @@ elif [ "$1" == "status" ] ; then
 	localService list-applications $2
 elif [ "$1" == "init" ] ; then
 	service stop-domain
-	rm -rf ${BINDIR}/../../data/web/kieker-*
-	rm -rf ${BINDIR}/../../data/logic/kieker-*
-	rm -rf ${BINDIR}/../../data/adapter/kieker-*
+	rm -rf ${DATADIR}/web/kieker-*
+	rm -rf ${DATADIR}/store/kieker-*
+	rm -rf ${DATADIR}/enterprise/kieker-*
+	rm -rf ${DATADIR}/adapter/kieker-*
 	service start-domain cocome
 else
 	echo "Usage: $0 <start|stop|restart|status|init>"
