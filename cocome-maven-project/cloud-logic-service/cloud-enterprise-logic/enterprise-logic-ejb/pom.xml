@@ -59,7 +59,7 @@
 			<artifactId>cloud-registry-client</artifactId>
 			<version>1.1</version>
 		</dependency>
-		
+
 		<!-- add on for monitoring -->
 		<dependency>
 			<groupId>org.iobserve</groupId>
@@ -82,7 +82,7 @@
 
 	<build>
 		<plugins>
-		<plugin>
+			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>aspectj-maven-plugin</artifactId>
 				<version>1.8</version>
@@ -113,7 +113,7 @@
 				<executions>
 					<execution>
 						<goals>
-							<goal>compile</goal> 
+							<goal>compile</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -180,18 +180,18 @@
 					</execution>
 				</executions>
 			</plugin>
-<!-- 			<plugin> -->
-<!-- 				<groupId>org.apache.maven.plugins</groupId> -->
-<!-- 				<artifactId>maven-javadoc-plugin</artifactId> -->
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<id>attach-javadocs</id> -->
-<!-- 						<goals> -->
-<!-- 							<goal>jar</goal> -->
-<!-- 						</goals> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 			</plugin> -->
+			<!-- <plugin> -->
+			<!-- <groupId>org.apache.maven.plugins</groupId> -->
+			<!-- <artifactId>maven-javadoc-plugin</artifactId> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <id>attach-javadocs</id> -->
+			<!-- <goals> -->
+			<!-- <goal>jar</goal> -->
+			<!-- </goals> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
 		</plugins>
 	</build>
 
