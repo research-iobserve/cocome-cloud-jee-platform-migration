@@ -42,12 +42,12 @@
 		<dependency>
 			<groupId>org.iobserve</groupId>
 			<artifactId>common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.iobserve</groupId>
 			<artifactId>monitoring</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 
 		<!-- aspectj -->
@@ -113,6 +113,7 @@
 					<configuration>
 						<type>runtime</type>
 						<properties>
+							<cargo.runtime.args>force=true</cargo.runtime.args>
 							<cargo.hostname>${web.host}</cargo.hostname>
 							<cargo.remote.username>${web.user}</cargo.remote.username>
 							<cargo.remote.password>${web.password}</cargo.remote.password>
