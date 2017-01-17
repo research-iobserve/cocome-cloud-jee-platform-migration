@@ -32,7 +32,7 @@ import org.cocome.tradingsystem.cashdeskline.events.ProductBarcodeScannedEvent;
  * @author Robert Heinrich
  */
 @Stateless
-public class BarcodeScannerModel implements IBarcodeScannerLocal {
+public class BarcodeScannerModel implements IBarcodeScannerModel {
 	
 	@Inject
 	private Event<ProductBarcodeScannedEvent> productBarcodeScannedEvent;

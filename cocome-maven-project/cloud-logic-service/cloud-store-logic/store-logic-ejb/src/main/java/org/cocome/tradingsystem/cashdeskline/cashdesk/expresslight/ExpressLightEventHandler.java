@@ -36,13 +36,13 @@ import org.cocome.tradingsystem.cashdeskline.events.ExpressModeEnabledEvent;
  * @author Robert Heinrich
  */
 @Dependent
-class ExpressLightEventHandler implements IExpressLightEventConsumerLocal {
+class ExpressLightEventHandler implements IExpressLightEventHandler {
 
 	private static final Logger LOG =
 			Logger.getLogger(ExpressLightEventHandler.class);
 	
 	@Inject
-	private IExpressLightLocal expressLight;
+	private IExpressLightModel expressLight;
 
 	//
 	// Event handler methods

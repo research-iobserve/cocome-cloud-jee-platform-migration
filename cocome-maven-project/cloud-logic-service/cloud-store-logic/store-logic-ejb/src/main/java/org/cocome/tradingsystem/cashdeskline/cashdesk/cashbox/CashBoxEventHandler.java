@@ -37,7 +37,7 @@ import org.cocome.tradingsystem.cashdeskline.events.ChangeAmountCalculatedEvent;
  */
 
 @Dependent
-public class CashBoxEventHandler implements ICashBoxEventConsumerLocal {
+public class CashBoxEventHandler implements ICashBoxEventHandler {
 
 	private static final Logger LOG =
 			Logger.getLogger(CashBoxEventHandler.class);
@@ -45,7 +45,7 @@ public class CashBoxEventHandler implements ICashBoxEventConsumerLocal {
 	//
 
 	@Inject
-	private ICashBoxLocal cashBox;
+	private ICashBoxModel cashBox;
 
 	//
 	// Event handler methods

@@ -4,9 +4,10 @@ Once you have successfully deployed the projects you can access the
 frontend under the following URL:
 
 `http://${web.host}:${web}.${web.httpPort}/cloud-web-frontend`
+  (eg.  http://localhost:8080/cloud-web-frontend)
 
 Note that `${web.host}` and `${web.httpPort}` are the values you
-specified in the `settings.xml` (see `Development Setup.md`)
+specified in the `settings.xml` (see [`Development Setup.md`](./Development Setup.md))
 
 A login screen will appear where you can log in with one of 
 the following credentials:
@@ -31,3 +32,9 @@ You need to provide the ID of an existing store to do that
 which can be retrieved using the Database Manager view mentioned 
 in the paragraph above.
 
+##Notice
+In case you already deployed CoCoME and you want to restart the application 
+(for example after a shutdown of your PC), start the glassfish domains in 
+the following order: start database, start registry,start adapter, start the 
+rest (web, store, enterprise). Then, you will be able to access the UI as
+mentioned above.

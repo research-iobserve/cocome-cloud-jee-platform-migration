@@ -129,7 +129,7 @@
 						<id>EnterpriseManagerWS</id>
 						<phase>process-classes</phase>
 						<configuration>
-							<className>org.cocome.logic.webservice.enterprise.IEnterpriseManager</className>
+							<className>org.cocome.logic.webservice.enterpriseservice.IEnterpriseManager</className>
 							<outputFile>${project.basedir}/src/main/resources/wsdl/IEnterpriseManager.wsdl</outputFile>
 						</configuration>
 						<goals>
@@ -141,7 +141,7 @@
 						<id>EnterpriseReportWS</id>
 						<phase>process-classes</phase>
 						<configuration>
-							<className>org.cocome.logic.webservice.enterprise.reporting.IEnterpriseReport</className>
+							<className>org.cocome.logic.webservice.enterpriseservice.reportingservice.IEnterpriseReport</className>
 							<outputFile>${project.basedir}/src/main/resources/wsdl/IEnterpriseReport.wsdl</outputFile>
 						</configuration>
 						<goals>
@@ -153,7 +153,7 @@
 						<id>LoginManagerWS</id>
 						<phase>process-classes</phase>
 						<configuration>
-							<className>org.cocome.logic.webservice.usermanager.ILoginManager</className>
+							<className>org.cocome.logic.webservice.usermanagerservice.ILoginManager</className>
 							<outputFile>${project.basedir}/src/main/resources/wsdl/ILoginManager.wsdl</outputFile>
 						</configuration>
 						<goals>
@@ -165,7 +165,7 @@
 						<id>CashDeskWS</id>
 						<phase>process-classes</phase>
 						<configuration>
-							<className>org.cocome.logic.webservice.cashdeskline.cashdesk.ICashDesk</className>
+							<className>org.cocome.logic.webservice.cashdeskline.cashdeskservice.ICashDesk</className>
 							<outputFile>${project.basedir}/src/main/resources/wsdl/ICashDesk.wsdl</outputFile>
 						</configuration>
 						<goals>
@@ -177,7 +177,7 @@
 						<id>BarcodeScannerWS</id>
 						<phase>process-classes</phase>
 						<configuration>
-							<className>org.cocome.logic.webservice.cashdeskline.cashdesk.barcodescanner.IBarcodeScanner</className>
+							<className>org.cocome.logic.webservice.cashdeskline.cashdeskservice.barcodescannerservice.IBarcodeScanner</className>
 							<outputFile>${project.basedir}/src/main/resources/wsdl/IBarcodeScanner.wsdl</outputFile>
 						</configuration>
 						<goals>
@@ -189,7 +189,7 @@
 						<id>CardReaderWS</id>
 						<phase>process-classes</phase>
 						<configuration>
-							<className>org.cocome.logic.webservice.cashdeskline.cashdesk.cardreader.ICardReader</className>
+							<className>org.cocome.logic.webservice.cashdeskline.cashdeskservice.cardreaderservice.ICardReader</className>
 							<outputFile>${project.basedir}/src/main/resources/wsdl/ICardReader.wsdl</outputFile>
 						</configuration>
 						<goals>
@@ -201,7 +201,7 @@
 						<id>CashBoxWS</id>
 						<phase>process-classes</phase>
 						<configuration>
-							<className>org.cocome.logic.webservice.cashdeskline.cashdesk.cashbox.ICashBox</className>
+							<className>org.cocome.logic.webservice.cashdeskline.cashdeskservice.cashboxservice.ICashBox</className>
 							<outputFile>${project.basedir}/src/main/resources/wsdl/ICashBox.wsdl</outputFile>
 						</configuration>
 						<goals>
@@ -213,7 +213,7 @@
 						<id>ExpressLightWS</id>
 						<phase>process-classes</phase>
 						<configuration>
-							<className>org.cocome.logic.webservice.cashdeskline.cashdesk.expresslight.IExpressLight</className>
+							<className>org.cocome.logic.webservice.cashdeskline.cashdeskservice.expresslightservice.IExpressLight</className>
 							<outputFile>${project.basedir}/src/main/resources/wsdl/IExpressLight.wsdl</outputFile>
 						</configuration>
 						<goals>
@@ -225,7 +225,7 @@
 						<id>PrinterWS</id>
 						<phase>process-classes</phase>
 						<configuration>
-							<className>org.cocome.logic.webservice.cashdeskline.cashdesk.printer.IPrinter</className>
+							<className>org.cocome.logic.webservice.cashdeskline.cashdeskservice.printerservice.IPrinter</className>
 							<outputFile>${project.basedir}/src/main/resources/wsdl/IPrinter.wsdl</outputFile>
 						</configuration>
 						<goals>
@@ -237,7 +237,7 @@
 						<id>UserDisplayWS</id>
 						<phase>process-classes</phase>
 						<configuration>
-							<className>org.cocome.logic.webservice.cashdeskline.cashdesk.userdisplay.IUserDisplay</className>
+							<className>org.cocome.logic.webservice.cashdeskline.cashdeskservice.userdisplayservice.IUserDisplay</className>
 							<outputFile>${project.basedir}/src/main/resources/wsdl/IUserDisplay.wsdl</outputFile>
 						</configuration>
 						<goals>
@@ -249,7 +249,7 @@
 						<id>StoreManagerWS</id>
 						<phase>process-classes</phase>
 						<configuration>
-							<className>org.cocome.logic.webservice.store.IStoreManager</className>
+							<className>org.cocome.logic.webservice.storeservice.IStoreManager</className>
 							<outputFile>${project.basedir}/src/main/resources/wsdl/IStoreManager.wsdl</outputFile>
 						</configuration>
 						<goals>
@@ -275,8 +275,8 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.6</version>
 			</plugin>
-			
-    		<plugin>
+
+			<plugin>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-codegen-plugin</artifactId>
 				<executions>
@@ -286,15 +286,19 @@
 						<configuration>
 							<sourceRoot>${project.build.directory}/generated-sources/src</sourceRoot>
 							<fork>true</fork>
+							<!-- The arguments should not be put on different lines 
+								because that results in errors when calling the java executable -->
 							<additionalJvmArgs>
 								-Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=all
 							</additionalJvmArgs>
 							<defaultOptions>
- 								<extraargs>
+								<extraargs>
 									<extraarg>-xjc-extension</extraarg>
 									<extraarg>-xjc-verbose</extraarg>
 								</extraargs>
-								<packagenames><packagename>${logic.stubs.package}</packagename></packagenames>
+								<packagenames>
+									<packagename>${logic.stubs.package}</packagename>
+								</packagenames>
 							</defaultOptions>
 							<wsdlOptions>
 								<wsdlOption>
@@ -391,7 +395,7 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -413,7 +417,8 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -430,7 +435,7 @@
 											cxf-java2ws-plugin
 										</artifactId>
 										<versionRange>
-											[3.1.6,)
+											[3.1.7,)
 										</versionRange>
 										<goals>
 											<goal>java2ws</goal>
