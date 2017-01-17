@@ -20,6 +20,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.cocome</groupId>
+			<artifactId>cloud-registry-client</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cocome</groupId>
 			<artifactId>enterprise-logic-ejb</artifactId>
 			<version>1.1</version>
 			<scope>provided</scope>

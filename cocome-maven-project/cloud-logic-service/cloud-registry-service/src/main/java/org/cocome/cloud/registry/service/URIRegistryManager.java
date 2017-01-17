@@ -10,37 +10,34 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jws.WebService;
 
-@WebService(serviceName = "IURIRegistryManagerService",
-			name = "IURIRegistryManager",
-			endpointInterface = "org.cocome.cloud.registry.service.IURIRegistryManager",
-			targetNamespace = "http://registry.webservice.logic.cocome.org/")
+@WebService(serviceName = "IURIRegistryManagerService", name = "IURIRegistryManager", endpointInterface = "org.cocome.cloud.registry.service.IURIRegistryManager", targetNamespace = "http://registry.webservice.logic.cocome.org/")
 @Stateless
 public class URIRegistryManager implements IURIRegistryManager {
-	
+
 	@Inject
 	IRegistry<URI> registry;
 
 	@Override
-	public void rebind(String name, URI location) {
-		registry.rebind(name, location);
+	public void rebind(final String name, final URI location) {
+		this.registry.rebind(name, location);
 	}
 
 	@Override
-	public boolean unbind(String name) {
-		return registry.unbind(name);
+	public boolean unbind(final String name) {
+		return this.registry.unbind(name);
 	}
 
 	@Override
-	public URI lookup(String name) throws NotBoundException {
-		return registry.lookup(name);
+	public URI lookup(final String name) throws NotBoundException {
+		return this.registry.lookup(name);
 	}
 
 	@Override
 	public Set<RegistryEntry> getBoundNames() {
-		Set<Entry<String, URI>> registryEntries = registry.getEntries();
-		Set<RegistryEntry> entries = new LinkedHashSet<>(registryEntries.size(), 1);
-		for (Entry<String, URI> entry : registryEntries) {
-			RegistryEntry regEntry = new RegistryEntry();
+		final Set<Entry<String, URI>> registryEntries = this.registry.getEntries();
+		final Set<RegistryEntry> entries = new LinkedHashSet<>(registryEntries.size(), 1);
+		for (final Entry<String, URI> entry : registryEntries) {
+			final RegistryEntry regEntry = new RegistryEntry();
 			regEntry.setLocation(entry.getValue());
 			regEntry.setName(entry.getKey());
 			entries.add(regEntry);

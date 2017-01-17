@@ -6,17 +6,16 @@ import org.cocome.tradingsystem.inventory.application.usermanager.CredentialType
 
 public class CredentialLiteral extends AnnotationLiteral<Credential> implements Credential {
 	private static final long serialVersionUID = 1L;
-	
-	private CredentialType value;
 
-	public CredentialLiteral(CredentialType value) {
+	private final CredentialType value;
+
+	public CredentialLiteral(final CredentialType value) {
 		this.value = value;
 	}
-	
+
 	@Override
 	public CredentialType value() {
-		return value;
+		return this.value;
 	}
-	
-	
+
 }

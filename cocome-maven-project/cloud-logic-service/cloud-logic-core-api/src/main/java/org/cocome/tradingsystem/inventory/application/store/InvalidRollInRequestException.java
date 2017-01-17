@@ -16,8 +16,6 @@
 
 package org.cocome.tradingsystem.inventory.application.store;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.ws.WebFault;
 
 import org.cocome.tradingsystem.util.exception.BaseException;
@@ -25,14 +23,14 @@ import org.cocome.tradingsystem.util.exception.BaseException;
 /**
  * Exception thrown by the store inventory trying to roll in invalid product
  * order.
- * 
+ *
  * @author Lubomir Bulej
  */
 @WebFault
 public class InvalidRollInRequestException extends BaseException {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 5830050990438405801L;
 

@@ -2,8 +2,6 @@ package org.cocome.tradingsystem.inventory.data.store;
 
 import java.util.Collection;
 
-import javax.annotation.PostConstruct;
-
 import org.cocome.tradingsystem.inventory.data.enterprise.ITradingEnterprise;
 import org.cocome.tradingsystem.util.exception.NotInDatabaseException;
 
@@ -24,7 +22,7 @@ public interface IStore {
 
 	/**
 	 * Returns the name of the store.
-	 * 
+	 *
 	 * @return Store name.
 	 */
 	String getName();
@@ -37,14 +35,14 @@ public interface IStore {
 
 	/**
 	 * Returns the location of the store.
-	 * 
+	 *
 	 * @return Store location.
 	 */
 	String getLocation();
 
 	/**
 	 * Sets the location of the store.
-	 * 
+	 *
 	 * @param location
 	 *            store location
 	 */
@@ -73,8 +71,7 @@ public interface IStore {
 	void setProductOrders(Collection<IProductOrder> productOrders);
 
 	/**
-	 * @return
-	 *         A list of StockItem objects. A StockItem represents a concrete
+	 * @return A list of StockItem objects. A StockItem represents a concrete
 	 *         product in the store including sales price, ...
 	 */
 	Collection<IStockItem> getStockItems();
@@ -86,6 +83,7 @@ public interface IStore {
 	 */
 	void setStockItems(Collection<IStockItem> stockItems);
 
+	@Override
 	String toString();
 
 	int compareTo(IStore o);

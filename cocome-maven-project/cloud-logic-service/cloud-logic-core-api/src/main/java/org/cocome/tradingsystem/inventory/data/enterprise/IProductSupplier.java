@@ -2,8 +2,6 @@ package org.cocome.tradingsystem.inventory.data.enterprise;
 
 import java.util.Collection;
 
-import javax.annotation.PostConstruct;
-
 import org.cocome.tradingsystem.util.exception.NotInDatabaseException;
 
 public interface IProductSupplier {
@@ -34,7 +32,7 @@ public interface IProductSupplier {
 
 	/**
 	 * @return The list of Products provided by the ProductSupplier
-	 * @throws NotInDatabaseException 
+	 * @throws NotInDatabaseException
 	 */
 	Collection<IProduct> getProducts() throws NotInDatabaseException;
 

@@ -18,16 +18,13 @@ package org.cocome.cloud.registry.service;
 
 import java.net.URI;
 import java.rmi.NotBoundException;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import javax.ejb.Startup;
 import javax.ejb.Singleton;
+import javax.ejb.Startup;
 
 import org.apache.log4j.Logger;
 
@@ -37,72 +34,67 @@ public class URIRegistry implements IRegistry<URI> {
 
 	private static final Logger LOG = Logger.getLogger(URIRegistry.class);
 
-	private Map<String, URI> registryMap = new LinkedHashMap<>();
-	
+	private final Map<String, URI> registryMap = new LinkedHashMap<>();
+
 	//
 
-
-
-	/* (non-Javadoc)
-	 * @see org.cocome.registry.service.IRegistry#rebind(java.lang.String, java.net.URI)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.cocome.registry.service.IRegistry#rebind(java.lang.String,
+	 * java.net.URI)
 	 */
 	@Override
 	public void rebind(final String name, final URI location) {
 		URIRegistry.assertStringNotEmpty(name);
 		URIRegistry.assertObjectNotNull(location);
 
-		registryMap.put(name, location);
-		
-		LOG.debug(String.format(
-		"Registered %s as %s in URI registry",
-		location, name));
+		this.registryMap.put(name, location);
+
+		LOG.debug(String.format("Registered %s as %s in URI registry", location, name));
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.cocome.registry.service.IRegistry#unbind(java.lang.String)
 	 */
 	@Override
-	public boolean unbind(
-			final String name
-			) {
+	public boolean unbind(final String name) {
 
 		URIRegistry.assertStringNotEmpty(name);
-		
-		URI removedEntry = registryMap.remove(name);
-		
+
+		final URI removedEntry = this.registryMap.remove(name);
+
 		if (removedEntry == null) {
 			//
 			// Don't make too much fuss about unbound names, just allow to
 			// check for it if interested...
 			//
-			LOG.debug(String.format(
-					"Name not bound, cannot unregister %s from URI registry",
-					name));
+			LOG.debug(String.format("Name not bound, cannot unregister %s from URI registry", name));
 			return false;
 		} else {
-			LOG.debug(String.format(
-			"Unregistered %s from URI registry",
-			name));
+			LOG.debug(String.format("Unregistered %s from URI registry", name));
 			return true;
 		}
 
 	}
 
-	/* (non-Javadoc)
-	 * @see org.cocome.registry.service.IRegistry#lookup(java.lang.String, java.lang.Class)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.cocome.registry.service.IRegistry#lookup(java.lang.String,
+	 * java.lang.Class)
 	 */
 	@Override
-	public URI lookup(
-			final String name) throws NotBoundException {
+	public URI lookup(final String name) throws NotBoundException {
 
 		URIRegistry.assertStringNotEmpty(name);
-		
-		URI location = registryMap.get(name);
-		
+
+		final URI location = this.registryMap.get(name);
+
 		if (location == null) {
-			LOG.error(String.format(
-					"URI object with name %s not found",
-					name));
+			LOG.error(String.format("URI object with name %s not found", name));
 			throw new NotBoundException("Object not bound in registry");
 		}
 		return location;
@@ -120,7 +112,7 @@ public class URIRegistry implements IRegistry<URI> {
 
 	@Override
 	public Set<Entry<String, URI>> getEntries() {
-		return registryMap.entrySet();
+		return this.registryMap.entrySet();
 	}
 
 }
