@@ -70,7 +70,6 @@
 					<configuration>
 						<type>runtime</type>
 						<properties>
-							<cargo.runtime.args>force=true</cargo.runtime.args>
 							<cargo.hostname>${logic.store.host}</cargo.hostname>
 							<cargo.remote.username>${logic.store.user}</cargo.remote.username>
 							<cargo.remote.password>${logic.store.password}</cargo.remote.password>

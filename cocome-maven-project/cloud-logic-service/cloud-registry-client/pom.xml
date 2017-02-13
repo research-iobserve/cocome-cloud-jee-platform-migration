@@ -8,55 +8,13 @@
 		<groupId>org.cocome</groupId>
 		<version>1.1</version>
 	</parent>
-
 	<artifactId>cloud-registry-client</artifactId>
 	<packaging>jar</packaging>
 	<name>Cloud Registry - Client</name>
 
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.spec</groupId>
-			<artifactId>jboss-javaee-all-6.0</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-1.2-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.cocome</groupId>
-			<artifactId>cloud-logic-core-services</artifactId>
-			<version>1.1</version>
-		</dependency>
-		
-		<!-- add on for monitoring -->
-		<dependency>
-			<groupId>org.iobserve</groupId>
-			<artifactId>common</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.iobserve</groupId>
-			<artifactId>monitoring</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
-		</dependency>
-
-		<!-- aspectj -->
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>1.8.7</version>
-		</dependency>
-	</dependencies>
-
 	<build>
 		<plugins>
-			<plugin>
+			<!-- plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>aspectj-maven-plugin</artifactId>
 				<version>1.8</version>
@@ -87,7 +45,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -147,5 +105,46 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-all-6.0</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-1.2-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.cocome</groupId>
+			<artifactId>cloud-logic-core-services</artifactId>
+			<version>1.1</version>
+		</dependency>
+		
+		<!-- add on for monitoring -->
+		<dependency>
+			<groupId>org.iobserve</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.iobserve</groupId>
+			<artifactId>monitoring</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
+		</dependency>
+
+		<!-- aspectj -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.8.7</version>
+		</dependency>
+	</dependencies>
 
 </project>
