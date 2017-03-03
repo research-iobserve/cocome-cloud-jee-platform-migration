@@ -224,6 +224,16 @@ public class EnterpriseQuery implements IEnterpriseQuery {
 
 	@Override
 	public boolean createStore(long enterpriseID, String name, String location) {
+		
+		if (storeCollections == null) {
+			try {
+				updateStoreInformation();
+			} catch(NotInDatabaseException_Exception ex) {
+				// TODO this is a nasty fix for a broken implementation.
+				// This was added, as the storeCollections are some times empty.
+			}
+		}
+		
 		StoreWithEnterpriseTO storeTO = new StoreWithEnterpriseTO();
 		storeTO.setEnterpriseTO(EnterpriseViewData.createEnterpriseTO(enterprises.get(enterpriseID)));
 		storeTO.setLocation(location);
